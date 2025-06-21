@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Body background filter: brightness(0.8);*/
+        body {
+            background-color: rgba(204, 165, 139, 0.95);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(1);
+        }
+
+        /* Form container */
+        .form-container {
+            max-width: 900px;
+            background-color: rgba(241, 238, 236, 0.95);
+            margin: 100px auto;
+            padding: 30px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            text-align: center;
+            opacity: 0; /* Initially hidden for animation */
+        }
+
+        /* Yoga slogan */
+        .slogan {
+            flex: 1; /* Take up remaining space */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #e67e22; /* Example: orange color */
+            padding-right: 20px; /* Space between slogan and form */
+        }
+
+        /* Form section */
+        .login-form {
+            flex: 1; /* Take up remaining space */
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background for readability */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners for the form */
+            transform-style: preserve-3d; /* Allow 3D transformations */
+            transition: transform 0.5s; /* Smooth transition for rotation */
+        }
+
+        h2 {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            opacity: 0; /* Initially hidden for animation */
+            margin-bottom: 20px; /* Space between form fields */
+        }
+
+        .form-control {
+            padding-left: 40px;
+        }
+
+        .form-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f39c12; /* Example: orange color */
+        }
+
+        .btn-login {
+            background-color: #f39c12;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+            transform: scale(0); /* Initially hidden for animation */
+        }
+
+        .btn-login:hover {
+            background-color: #e67e22;
+        }
+
+        /* 3D Rotation Effect */
+        .login-form:hover {
+            transform: rotateY(10deg); /* Rotate around the Y-axis */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Form container with slogan and login form -->
+<div class="form-container">
+    
+    <div class="image-container col-6">
+        <img src="{{ url_for('static', filename='images/dashboard/yoga1.gif') }}" alt="Yoga" class="img-fluid" style="border-radius: 10px; height: 95%;">
+    </div>
+
+    <div class="login-form">
+        <h2>Login Form</h2>
+        <form action="{{ url_for(' ') }}" method="POST" id="loginForm">
+            <div class="form-group">
+                <i class="fas fa-user form-icon"></i>
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock form-icon"></i>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-login btn-block">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- GSAP Animation -->
+<script>
+    // GSAP Animation for form container
+    gsap.fromTo(".form-container", {
+        opacity: 0,
+        y: 50
+    }, {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: "power2.out"
+    });
+
+    // GSAP Stagger animation for form fields
+    gsap.fromTo(".form-group", {
+        opacity: 0,
+        x: -50
+    }, {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+        stagger: 0.3
+    });
+
+    // GSAP Animation for login button
+    gsap.fromTo(".btn-login", {
+        scale: 0
+    }, {
+        scale: 1,
+        duration: 0.5,
+        ease: "bounce.out",
+        delay: 1.5
+    });
+
+    // Button hover effect using GSAP
+    const loginButton = document.querySelector('.btn-login');
+    loginButton.addEventListener('mouseenter', () => {
+        gsap.to(loginButton, { scale: 1.1, duration: 0.2 });
+    });
+    loginButton.addEventListener('mouseleave', () => {
+        gsap.to(loginButton, { scale: 1, duration: 0.2 });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+0 Apana Mudra
+1 Gyan Mudra
+2 Ling Mudra
+3 Lotus Mudra
+4 Prana Mudra
+5 Prithvi Mudra
+6 Shunya Mudra
+7 Surya Mudra
+8 Varun Mudra
+9 Vayu Mudra

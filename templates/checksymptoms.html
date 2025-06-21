@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Yog Mudra</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendors/feather/feather.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendors/css/vendor.bundle.base.css') }}">
+   
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendors/ti-icons/css/themify-icons.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='js/select.dataTables.min.css') }}">
+  
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vertical-layout-light/style.css') }}">
+ 
+  <!-- endinject -->
+   <link rel="shortcut icon" href="{{ url_for('static', filename='images/yogaicon.jpg') }}" />  
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{{ url_for('static', filename='images/yogaicon.jpg') }}" class="mr-2" alt="logo"/>Yog Mudra</a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ url_for('static', filename='images/yogaicon.jpg') }}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+ 
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{{ url_for('static', filename='images/faces/user (1).png') }}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item" href="{{ url_for('login') }}" >
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-settings d-none d-lg-flex">
+            <a class="nav-link" href="#">
+              <i class="icon-ellipsis"></i>
+            </a>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dashboard') }}" >
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('checksymptoms') }}">  
+                <i class="ti-pulse menu-icon"></i>
+              <span class="menu-title">Check Symptoms</span>
+            </a>
+          </li>
+         
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('turnoncamera') }}">  
+                <i class="ti-video-camera menu-icon"></i>
+              <span class="menu-title">Turn on camera</span>
+               
+            </a>
+          </li>  
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">
+              <!-- <i class="icon-activity  menu-icon"></i> -->
+              <i class="ti-share-alt menu-icon"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+          
+         
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="row">
+                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                  <h3 class="font-weight-bold">Welcome {{ username }}</h3>
+                  <h2 class="font-weight-normal mb-0" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: orange;">Yoga is the journey of the self, through the self, to the self<span class="text-primary"></span></h2>
+                </div>
+                <div class="col-12 col-xl-4">
+                 <div class="justify-content-end d-flex">
+                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                    <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                     <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
+                    </button>
+                   
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+       
+           <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card position-relative">
+                <div class="card-body">
+                  <div id="detailedReports" class="  slide   position-static pt-2" >
+                     
+                      
+                       <div class="row">
+                          <div class="col-md-12 col-xl-9 d-flex flex-column justify-content-start">
+                            <div class="ml-xl-4 mt-3">
+                            <!-- <p class="card-title">Detailed Reports</p> -->
+                              <h1 class="text-primary">Check Symptoms</h1>
+                              <!-- <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3> -->
+                             
+    
+                      <!-- Dropdown for selecting type -->   
+                       <form method="POST">      
+                        <div class="form-group">
+                            <label for="typemudraDropdown">Select Type:</label>
+                            <select class="form-control" id="typemudraDropdown" name="type" required>
+                                  <!-- First static option prompting the user to select -->
+                              <option value="" disabled selected>Select a type</option>
+                               <!-- Loop through the typemudra_data passed from Flask and create an option for each item -->
+                                {% for row in typemudra_data %}
+                                    <option value="{{ row['type'] }}">{{ row['type'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                            <!-- Add the button below the dropdown -->
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary">Check</button>
+                            </div>
+
+                        </form>
+  
+                      <!-- Display the MudraName and Benefits if available -->
+  
+                      <!-- Display the MudraName and Benefits if available -->
+    {% if mudra_info %}
+    <div class="card mt-4" style="border-color: #007bff;">
+        <div class="card-header bg-primary text-white">
+            <h4 >Mudra Information</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="font-weight-500 mb-xl-4 " class="card-title">{{ mudra_info['MudraName'] }}</h5>
+            <p class="card-text">
+                <strong>Benefits:</strong><br>
+                {{ mudra_info['Benefits'] }}
+            </p>
+
+             <!-- Display Mudra image -->
+        <div class="mudra-image mt-3">
+          <img src="{{ url_for('static', filename='images/mudras/' + mudra_info['MudraName'] + '.jpg') }}" alt="{{ mudra_info['MudraName'] }} Image" class="img-fluid" style="max-width: 350px;"/>
+      </div>
+        </div>
+    </div>
+{% endif %}
+                            </div>  
+                          </div>
+                            
+                          <div class="col-md-12 col-xl-9">
+                            <div class="row">
+                              <div class="col-md-6  ">
+                                <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                  <table class="table table-borderless report-table">
+                                   
+                                      
+                                  </table>
+                                </div>
+                              </div>
+                              <div class="col-md-6 mt-3">
+                                 
+                              </div>
+                            </div>
+                          </div> 
+                        </div> 
+                     
+                     
+                     
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+           
+         
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. All rights reserved.</span>
+           <!-- <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>-->
+          </div>
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+           <!-- <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span> -->
+          </div>
+        </footer> 
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{{ url_for('static', filename='vendors/js/vendor.bundle.base.js') }}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page --> 
+  <script src="{{ url_for('static', filename='vendors/chart.js/Chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net/jquery.dataTables.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dataTables.select.min.js') }}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{{ url_for('static', filename='js/off-canvas.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/hoverable-collapse.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/template.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/todolist.js') }}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/Chart.roundedBarCharts.js') }}"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+
